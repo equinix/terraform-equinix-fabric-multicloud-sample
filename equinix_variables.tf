@@ -93,10 +93,12 @@ variable eqx_ne_device_package_code {
 }
 
 variable eqx_ne_device_term_length {
+  type = number
   description = ""
 }
 
 variable eqx_ne_device_throughput {
+  type = number
   description = ""
 }
 
@@ -105,10 +107,12 @@ variable eqx_ne_device_throughput_unit {
 }
 
 variable eqx_ne_device_interface_count {
+  type = number
   description = ""
 }
 
 variable eqx_ne_device_core_count {
+  type = number
   description = ""
 }
 
@@ -125,10 +129,12 @@ variable eqx_ne_ssh_pwd {
 }
 
 variable eqx_ne_bgp_gcp_equinix_side_asn {
+  type = number
   description = ""
 }
 
 variable eqx_ne_bgp_aws_equinix_side_asn {
+  type = number
   description = ""
 }
 
