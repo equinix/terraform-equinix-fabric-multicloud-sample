@@ -38,7 +38,7 @@ variable eqx_fabric_aws_vlan_stag {
 }
 
 variable eqx_fabric_aws_seller_region {
-  descritpion = ""
+  description = ""
 }
 
 variable eqx_fabric_aws_seller_metro_code {
@@ -130,7 +130,7 @@ variable eqx_ne_ssh_pwd {
 
 variable eqx_ne_bgp_gcp_equinix_side_asn {
   type = number
-  description = ""
+  description = "Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value."
 }
 
 variable eqx_ne_bgp_aws_equinix_side_asn {

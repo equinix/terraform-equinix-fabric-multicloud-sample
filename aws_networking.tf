@@ -17,7 +17,7 @@ resource "aws_vpc" "aws-vpc" {
   tags = {
     Name       = format("%s-VPC", upper(var.owner))
     Terraform  = "true"
-    Project    = lower(var.project)
+    Project    = lower(var.project_name)
     Owner      = lower(var.owner)
   }
 }
@@ -29,7 +29,7 @@ resource "aws_subnet" "aws-subnet-1" {
   tags = {
     Name = "aws-vpn-subnet"
     Terraform  = "true"
-    Project    = lower(var.project)
+    Project    = lower(var.project_name)
     Owner      = lower(var.owner)
   }
 }
@@ -40,7 +40,7 @@ resource "aws_internet_gateway" "aws-vpc-igw" {
   tags = {
     Name = "aws-vpc-igw"
     Terraform  = "true"
-    Project    = lower(var.project)
+    Project    = lower(var.project_name)
     Owner      = lower(var.owner)
   }
 }

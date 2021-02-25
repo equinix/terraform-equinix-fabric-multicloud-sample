@@ -14,11 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-# Make it easy to run iperf3.
-#echo "iperf3 -c <EXT_IP> -p 80 -i 1 -t 30 -P 8 -V" > /tmp/run_iperf_to_ext.sh
-#chmod 755 /tmp/run_iperf_to_ext.sh
-echo "iperf3 -c <INT_IP> -p 5201 -i 1 -t 30 -P 8 -V" > /tmp/run_iperf_to_int.sh
+echo "iperf3 -c <INT_IP> -p 80 -i 1 -t 30 -P 8 -V" > /tmp/run_iperf_to_int.sh
 chmod 755 /tmp/run_iperf_to_int.sh
 
 # Setup iperf3.

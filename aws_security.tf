@@ -16,7 +16,7 @@ resource "aws_security_group" "aws-allow-icmp" {
 
   tags = {
     Terraform = "true"
-    Project   = lower(var.project)
+    Project   = lower(var.project_name)
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_security_group" "aws-allow-ssh" {
 
   tags = {
     Terraform = "true"
-    Project   = lower(var.project)
+    Project   = lower(var.project_name)
     Owner     = lower(var.owner)
   }
 }
@@ -50,7 +50,7 @@ resource "aws_security_group" "aws-allow-csps" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [var.gcp_subnet1_cidr, var.az_subnet1_cidr]
+    cidr_blocks = [var.gcp_subnet1_cidr]
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_security_group" "aws-allow-internet" {
 
   tags = {
     Terraform = "true"
-    Project   = lower(var.project)
+    Project   = lower(var.project_name)
     Owner     = lower(var.owner)
   }
 }

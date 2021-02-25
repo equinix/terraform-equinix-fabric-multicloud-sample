@@ -4,7 +4,7 @@
 resource "aws_vpn_gateway" "aws-dx" {
   tags = {
     Terraform = "true"
-    Project   = lower(var.project)
+    Project   = lower(var.project_name)
     Owner     = lower(var.owner)
   }
 }
@@ -14,10 +14,10 @@ resource "aws_vpn_gateway_attachment" "aws-dx" {
   vpn_gateway_id  = aws_vpn_gateway.aws-dx.id
 }
 
-resource "time_sleep" "wait_90_seconds" {
+resource "time_sleep" "wait_120_seconds" {
   depends_on = [aws_instance.aws-vm]
 
-  create_duration = "90s"
+  create_duration = "120s"
 }
 
 resource "aws_dx_private_virtual_interface" "aws-dx" {
@@ -25,7 +25,7 @@ resource "aws_dx_private_virtual_interface" "aws-dx" {
   count      = var.aws_create_dx_pvi ? 1: 0
 
   connection_id     = equinix_ecx_l2_connection_accepter.aws.aws_connection_id
-  name              = format("%s-dx-vif", lower(var.project))
+  name              = format("%s-dx-vif", lower(var.project_name))
   vlan              = equinix_ecx_l2_connection.aws.zside_vlan_stag // Corresponds to the Equinix API parameter 'Seller-Side VLAN ID - zside_vlan_stag'
   address_family    = var.aws_dx_address_familiy
   bgp_asn           = var.aws_dx_bgp_asn
@@ -36,7 +36,7 @@ resource "aws_dx_private_virtual_interface" "aws-dx" {
 
   tags = {
     Terraform = "true"
-    Project   = lower(var.project)
+    Project   = lower(var.project_name)
     Owner     = lower(var.owner)
   }
 

@@ -28,7 +28,3 @@ variable gcp_subnet1_cidr {
 variable gcp_vm_address {
   description = "Private IP address for GCP VM instance."
 }
-
-variable gcp_bgp_peer_asn {
-  description = "Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value."
-}

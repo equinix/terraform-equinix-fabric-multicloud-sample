@@ -48,7 +48,7 @@ resource "aws_instance" "aws-vm" {
   tags = {
     Name      = "aws-vm-${var.aws_region}"
     Terraform = "true"
-    Project   = lower(var.project)
+    Project   = lower(var.project_name)
     Owner     = lower(var.owner)
   }
 }

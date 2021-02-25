@@ -2,15 +2,11 @@
  * Terraform variable declarations for AWS.
  */
 variable aws_access_key {
-  description = "AWS access key to accept direct connection in AWS side"
+  description = "AWS access key"
 }
 
 variable aws_secret_key {
-  description = "AWS secret key to accept direct connection in AWS side"
-}
-
-variable aws_credentials_file_path {
-  description = "Locate the AWS credentials file."  
+  description = "AWS secret key"
 }
 
 variable aws_region {

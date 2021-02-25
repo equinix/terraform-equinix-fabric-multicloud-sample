@@ -12,16 +12,17 @@ terraform {
 }
 
 provider "equinix" {
-  client_id       = var.eqx_ecx_client_id
-  client_secret   = var.eqx_ecx_client_secret
+  client_id       = var.eqx_fabric_client_id
+  client_secret   = var.eqx_fabric_client_secret
   request_timeout = 30
 }
 
 provider "aws" {
   version = "~> 3.15.0"
-  
-  shared_credentials_file = pathexpand(var.aws_credentials_file_path)
-  region                  = var.aws_region
+
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+  region     = var.aws_region
 }
 
 provider "google" {

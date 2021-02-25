@@ -58,7 +58,7 @@ resource "google_compute_firewall" "gcp-allow-internet" {
 
  allow {
    protocol = "tcp"
-   ports    = ["5201"]
+   ports    = ["80"]
  }
 
  source_ranges = [
