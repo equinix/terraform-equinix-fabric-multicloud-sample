@@ -1,5 +1,7 @@
 # terraform-equinix-fabric-multicloud-sample
 
+![Alt text](docs/images/Multicloud-Automation-Equinix-Fabric-Diagram?raw=true "Multi-cloud automation Equinix Fabric diagram")
+
 ### TODO List
 
 - [ ] Add repository information to readme file
