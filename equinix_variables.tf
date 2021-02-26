@@ -27,10 +27,6 @@ variable eqx_fabric_aws_speed_unit {
   description = "MB / GB, must be allowed by the platform and the seller"
 }
 
-variable eqx_fabric_aws_vlan_stag {
-  description = "Equinix Fabric side VLAN for the specific connection (primary connection)"
-}
-
 variable eqx_fabric_aws_seller_region {
   description = "The region in which the seller port (AWS) resides"
 }
