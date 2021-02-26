@@ -49,7 +49,7 @@ Required steps to setup your environment for the lab:
    ```sh
    terraform init
    terraform plan
-   terraform apply -y
+   terraform apply -auto-approve
 
 4. SSH login in one of the instances and run iperf to test the connection
 
