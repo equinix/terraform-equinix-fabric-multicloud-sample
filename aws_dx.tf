@@ -22,12 +22,11 @@ resource "time_sleep" "wait_120_seconds" {
 
 resource "aws_dx_private_virtual_interface" "aws-dx" {
   depends_on = [time_sleep.wait_90_seconds]
-  count      = var.aws_create_dx_pvi ? 1: 0
 
   connection_id     = equinix_ecx_l2_connection_accepter.aws.aws_connection_id
   name              = format("%s-dx-vif", lower(var.project_name))
   vlan              = equinix_ecx_l2_connection.aws.zside_vlan_stag // Corresponds to the Equinix API parameter 'Seller-Side VLAN ID - zside_vlan_stag'
-  address_family    = var.aws_dx_address_familiy
+  address_family    = "ipv4"
   bgp_asn           = var.aws_dx_bgp_asn
   bgp_auth_key      = var.aws_dx_bgp_authkey
   amazon_address    = var.aws_dx_bgp_amazon_address

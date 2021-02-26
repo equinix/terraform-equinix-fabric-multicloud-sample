@@ -37,16 +37,12 @@ variable aws_ssh_key_name {
   description = "SSH key to access to the AWS VM"
 }
 
-variable aws_create_dx_pvi {
-}
-
-variable aws_dx_address_familiy {
-}
-
 variable aws_dx_bgp_asn {
+  description = "The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration"
 }
 
 variable aws_dx_bgp_authkey {
+  description = "The authentication key for BGP configuration. Special characters may conflict in the router configuration"
 }
 
 variable aws_dx_bgp_amazon_address {

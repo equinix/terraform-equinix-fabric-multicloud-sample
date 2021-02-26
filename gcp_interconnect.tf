@@ -5,10 +5,10 @@
 
 //Represents an InterconnectAttachment (VLAN attachment) resource.
 resource "google_compute_interconnect_attachment" "interconn-vlan" {
-  name         = format("%s-interconn-vlan", lower(var.project_name))
-  router       = google_compute_router.interconn-router.id
-  type         = "PARTNER"
-  region       = var.gcp_region
+  name          = format("%s-interconn-vlan", lower(var.project_name))
+  router        = google_compute_router.interconn-router.id
+  type          = "PARTNER"
+  region        = var.gcp_region
   admin_enabled = true
 
   edge_availability_domain = "AVAILABILITY_DOMAIN_1" //AVAILABILITY_DOMAIN_ANY - AVAILABILITY_DOMAIN_1 - AVAILABILITY_DOMAIN_2
@@ -36,7 +36,7 @@ resource "time_sleep" "wait_90_seconds" {
 resource "null_resource" "configure_bgp" {
   depends_on = [equinix_ecx_l2_connection.gcp]
   triggers = {
-    peer_asn = var.eqx_ne_bgp_gcp_equinix_side_asn
+    peer_asn              = var.eqx_ne_bgp_gcp_equinix_side_asn
     google_compute_router = google_compute_router.interconn-router.id
   }
 
@@ -44,10 +44,10 @@ resource "null_resource" "configure_bgp" {
     interpreter = ["/bin/bash" ,"-c"]
     command = "peer_name=`gcloud compute routers describe $ROUTER_NAME --region=$REGION --project=$PROJECT_ID --format=\"value(bgpPeers.name)\"` && gcloud compute routers update-bgp-peer $ROUTER_NAME --peer-name=$peer_name --peer-asn=$PEER_ASN --advertisement-mode=CUSTOM --set-advertisement-groups=ALL_SUBNETS --region=$REGION --project=$PROJECT_ID"
     environment = {
-      REGION = google_compute_router.interconn-router.region
+      REGION      = google_compute_router.interconn-router.region
       ROUTER_NAME = google_compute_router.interconn-router.name
-      PROJECT_ID = var.gcp_project_id
-      PEER_ASN = var.eqx_ne_bgp_gcp_equinix_side_asn
+      PROJECT_ID  = var.gcp_project_id
+      PEER_ASN    = var.eqx_ne_bgp_gcp_equinix_side_asn
     }
   }
 }

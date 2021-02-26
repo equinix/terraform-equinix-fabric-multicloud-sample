@@ -3,21 +3,20 @@
  */
 
 variable eqx_fabric_client_id {
-  
   description = "Equinix Fabric Developer API client ID"
 }
 
 variable eqx_fabric_client_secret {
-  
   description = "Equinix Fabric Developer API client Secret"
 }
 
 variable eqx_fabric_notification_users {
-  type    = list(string)
+  type        = list(string)
+  description = "A list of email addresses that would be notified when there are any updates on this connection"
 }
 
 variable eqx_fabric_aws_primary_connection_name {
-  description = "Equinix Fabric connection name"
+  description = "Equinix Fabric connection name for AWS"
 }
 
 variable eqx_fabric_aws_speed {
@@ -28,17 +27,12 @@ variable eqx_fabric_aws_speed_unit {
   description = "MB / GB, must be allowed by the platform and the seller"
 }
 
-variable eqx_fabric_aws_port_name {
-  default = ""
-}
-
 variable eqx_fabric_aws_vlan_stag {
   description = "Equinix Fabric side VLAN for the specific connection (primary connection)"
-  default     = ""
 }
 
 variable eqx_fabric_aws_seller_region {
-  description = ""
+  description = "The region in which the seller port (AWS) resides"
 }
 
 variable eqx_fabric_aws_seller_metro_code {
@@ -50,11 +44,10 @@ variable eqx_fabric_aws_auth_key {
 }
 
 variable eqx_fabric_gcp_primary_connection_name {
-  
+  description = "Equinix Fabric connection name for GCP"
 }
 
 variable eqx_fabric_gcp_speed {
-  
   description = "speed for the NE connection, must be allowed by the platform and seller"
 }
 
@@ -63,6 +56,7 @@ variable eqx_fabric_gcp_speed_unit {
 }
 
 variable eqx_fabric_gcp_seller_region {
+  description = "The region in which the seller port (GCP) resides"
 }
 
 variable eqx_fabric_gcp_seller_metro_code {
@@ -73,7 +67,7 @@ variable eqx_fabric_gcp_seller_metro_code {
  * Terraform variable declarations for Equinx Network Edge.
  */
 variable eqx_ne_account_number {
-  description = ""
+  description = "Billing account number for a device"
 }
 
 variable eqx_ne_device_name {
@@ -81,71 +75,71 @@ variable eqx_ne_device_name {
 }
 
 variable eqx_ne_device_hostname {
-  description = ""
+  description = "Device hostname prefix"
 }
 
 variable eqx_ne_device_metro_code {
-  description = ""
+  description = "Device location metro code"
 }
 
 variable eqx_ne_device_package_code {
-  description = ""
+  description = "Device software package code"
 }
 
 variable eqx_ne_device_term_length {
   type = number
-  description = ""
+  description = "Device term length"
 }
 
 variable eqx_ne_device_throughput {
   type = number
-  description = ""
+  description = "Device license throughput"
 }
 
 variable eqx_ne_device_throughput_unit {
-  description = ""
+  description = "License throughput unit (Mbps or Gbps)"
 }
 
 variable eqx_ne_device_interface_count {
   type = number
-  description = ""
+  description = "Number of network interfaces on a device. If not specified, default number for a given device type will be used"
 }
 
 variable eqx_ne_device_core_count {
   type = number
-  description = ""
+  description = "Number of CPU cores used by device"
 }
 
 variable eqx_ne_device_version {
-  description = ""
+  description = "Device software software version"
 }
 
 variable eqx_ne_ssh_user {
-  description = ""
+  description = "Device - SSH user login name"
 }
 
 variable eqx_ne_ssh_pwd {
-  description = ""
+  description = "Device - SSH user password"
 }
 
 variable eqx_ne_bgp_gcp_equinix_side_asn {
   type = number
-  description = "Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value."
+  description = "Local Peer BGP Autonomous System Number (ASN) for GCP. Each BGP interface may use a different value. (Equinix side)"
 }
 
 variable eqx_ne_bgp_aws_equinix_side_asn {
   type = number
-  description = ""
+  description = "Local Peer BGP Autonomous System Number (ASN) for AWS. Each BGP interface may use a different value. (Equinix side)"
 }
 
 variable eqx_ne_bgp_aws_auth_key {
-  description = ""
+  description = "Shared key used for BGP peer authentication"
 }
 
 variable eqx_ne_bgp_aws_cloud_address {
-  description = ""
+  description = "IP address in CIDR of remote peer (AWS side)"
 }
 
 variable eqx_ne_bgp_aws_equinix_side_address {
-  description = ""
+  description = "IP address in CIDR format of a local device (Equinix side)"
 }
