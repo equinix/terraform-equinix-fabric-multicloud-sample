@@ -12,14 +12,14 @@ After completing the lab you will be able to communicate from an virtual machine
 ## Requirements
 
 * Equinix Fabric Account:
-** Permission to create Connection and Network Edge devices
+  - Permission to create Connection and Network Edge devices
 * GCP Account: 
-** Permission to create a project or select one already created
-** Enable billing.
-** Enable APIs: Compute Engine API, and Cloud Deployment Manager API.
+  - Permission to create a project or select one already created
+  - Enable billing.
+  - Enable APIs: Compute Engine API, and Cloud Deployment Manager API.
 * AWS Account:
-** Permission to access IAM Resources and create an access key
-** IAM user with EC2 full access
+  - Permission to access IAM Resources and create an access key
+  - IAM user with EC2 full access
 * Curently, this demo only works on Linux. If you do not have access to a Linux environment, we recommend using the GCP cloud shell since it already includes other dependencies listed below.
 
 ## Setup
@@ -56,7 +56,7 @@ Required steps to setup your environment for the lab:
    ```sh
    ssh -i ~/.ssh/vm-ssh-key [VM_EXTERNAL_IP]
    bash /tmp/run_iperf_to_int.sh
-   
+
 ## TODO - Pending tasks
 
 - [ ] Add variables validation
