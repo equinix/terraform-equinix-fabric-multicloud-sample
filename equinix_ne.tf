@@ -38,10 +38,10 @@ resource "equinix_network_bgp" "aws" {
   authentication_key  = var.eqx_ne_bgp_aws_auth_key
 }
 
- resource "equinix_network_bgp" "gcp" {
-   connection_id      = equinix_ecx_l2_connection.gcp.id
-   local_ip_address   = google_compute_interconnect_attachment.interconn-vlan.customer_router_ip_address
-   local_asn          = var.eqx_ne_bgp_gcp_equinix_side_asn
-   remote_ip_address  = cidrhost(google_compute_interconnect_attachment.interconn-vlan.cloud_router_ip_address,1)
-   remote_asn         = 16550 // The Cloud Router used by PARTNER type interconnect attachments must be assigned a local ASN of '16550'
- }
+resource "equinix_network_bgp" "gcp" {
+  connection_id      = equinix_ecx_l2_connection.gcp.id
+  local_ip_address   = local.eqx_ne_bgp_gcp_equinix_side_address
+  local_asn          = var.eqx_ne_bgp_gcp_equinix_side_asn
+  remote_ip_address  = cidrhost(local.eqx_ne_bgp_gcp_cloud_address,1)
+  remote_asn         = 16550 // The Cloud Router used by PARTNER type interconnect attachments must be assigned a local ASN of '16550'
+}

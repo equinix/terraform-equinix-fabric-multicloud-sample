@@ -26,14 +26,8 @@ resource "google_compute_router" "interconn-router" {
  }
 }
 
-//Demo Resources
-resource "time_sleep" "wait_90_seconds" {
-  depends_on = [equinix_ecx_l2_connection.gcp]
-
-  create_duration = "90s"
-}
-
-resource "null_resource" "configure_bgp" {
+//Resource implementation to finish the bgp configuration on GCP side 
+resource "null_resource" "gcp_configure_bgp" {
   depends_on = [equinix_ecx_l2_connection.gcp]
   triggers = {
     peer_asn              = var.eqx_ne_bgp_gcp_equinix_side_asn
@@ -50,4 +44,25 @@ resource "null_resource" "configure_bgp" {
       PEER_ASN    = var.eqx_ne_bgp_gcp_equinix_side_asn
     }
   }
+}
+
+// Data source implementation to obtain the IPs of the routers associated with the interconnect attachment
+// Although they can be obtained with the google_compute_interconnect_attachment resource, 
+// it generally returns an empty value during the first execution,
+// in this way we can wait until we have the value of the IPs
+data "external" "export_gcp_interconn_attachment_ips" {
+  depends_on = [null_resource.gcp_configure_bgp]
+
+  program = ["/bin/bash", "get_interconnect_attachment_ips.sh"]
+
+  query = {
+      interconnect_name = google_compute_interconnect_attachment.interconn-vlan.name
+      region            = google_compute_interconnect_attachment.interconn-vlan.region
+      project_id        = var.gcp_project_id
+  }
+}
+
+locals {
+ eqx_ne_bgp_gcp_cloud_address = data.external.export_gcp_interconn_attachment_ips.result.cloud_router_ip
+ eqx_ne_bgp_gcp_equinix_side_address = data.external.export_gcp_interconn_attachment_ips.result.customer_router_ip
 }
