@@ -13,15 +13,15 @@ wait_seconds=6
 
 cloud_router_ip=""
 customer_router_ip=""
-iterations=2
+iterations=0
 while true
 do
 	((++iterations))
 	sleep $wait_seconds
 
 	interconnect=$(gcloud compute interconnects attachments describe $INTERCONNECT_ATTACHMENT --region $REGION --project=$PROJECT_ID --format=json)
-    cloud_router_ip=$(echo $interconnect | jq -r '.cloudRouterIpAddress')
-    customer_router_ip=$(echo $interconnect | jq -r '.customerRouterIpAddress')
+	cloud_router_ip=$(echo $interconnect | jq -r '.cloudRouterIpAddress')
+	customer_router_ip=$(echo $interconnect | jq -r '.customerRouterIpAddress')
 
 	if [ ! -z "$cloud_router_ip" ] && [ ! -z "$customer_router_ip" ]; then
 		break
