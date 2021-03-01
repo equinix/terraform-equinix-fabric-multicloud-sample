@@ -21,7 +21,7 @@ resource "time_sleep" "wait_120_seconds" {
 }
 
 resource "aws_dx_private_virtual_interface" "aws-dx" {
-  depends_on = [time_sleep.wait_90_seconds]
+  depends_on = [time_sleep.wait_120_seconds]
 
   connection_id     = equinix_ecx_l2_connection_accepter.aws.aws_connection_id
   name              = format("%s-dx-vif", lower(var.project_name))
