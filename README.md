@@ -28,6 +28,7 @@ Required steps to setup your environment for the lab:
 
 * Install the developer version of the terraform Equinix provider. Check [Equinix provider development](https://github.com/equinix/terraform-provider-equinix/blob/master/DEVELOPMENT.md) for guides on building the provider.
 * Install and setup Google Cloud SDK [Installing Google Cloud SDK](https://cloud.google.com/sdk/docs/install). Skip this step if you are using Google cloud shell.
+* Install jq for Linux [jq for Linux](https://stedolan.github.io/jq/). Skip this step if you are using Google cloud shell.
 * Create or import a key pair into AWS [AWS Create or import a key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair)
 
 ## Usage
@@ -60,3 +61,4 @@ Required steps to setup your environment for the lab:
 ## TODO - Pending tasks
 
 - [ ] Add variables validation
+- [ ] TBD include other CSP options
