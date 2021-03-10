@@ -32,6 +32,13 @@ do
 	fi
 done
 
+if [ -z "$cloud_router_ip" ] && [ -z "$customer_router_ip" ]; then
+	break
+fi
+
+[ -z "$cloud_router_ip" ] && echo "GCP - Cloud router is null"
+[ -z "$customer_router_ip" ] && echo "GCP - Customer router is null"
+
 # Safely produce a JSON object containing the result value.
 # jq will ensure that the value is properly quoted
 # and escaped to produce a valid JSON string.

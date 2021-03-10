@@ -62,6 +62,15 @@ variable eqx_fabric_gcp_seller_metro_code {
 /*
  * Terraform variable declarations for Equinx Network Edge.
  */
+ 
+variable eqx_ne_device_id {
+  description = "If you already have a Network Edge device created. Required if 'eqx_ne_create_ne_device' is 'false'"
+}
+
+variable eqx_ne_create_ne_device {
+  description = "if true create a Network Edge device, if not skip and use the provided device id"
+}
+
 variable eqx_ne_account_number {
   description = "Billing account number for a device"
 }
@@ -116,26 +125,4 @@ variable eqx_ne_ssh_user {
 
 variable eqx_ne_ssh_pwd {
   description = "Device - SSH user password"
-}
-
-variable eqx_ne_bgp_gcp_equinix_side_asn {
-  type = number
-  description = "Local Peer BGP Autonomous System Number (ASN) for GCP. Each BGP interface may use a different value. (Equinix side)"
-}
-
-variable eqx_ne_bgp_aws_equinix_side_asn {
-  type = number
-  description = "Local Peer BGP Autonomous System Number (ASN) for AWS. Each BGP interface may use a different value. (Equinix side)"
-}
-
-variable eqx_ne_bgp_aws_auth_key {
-  description = "Shared key used for BGP peer authentication"
-}
-
-variable eqx_ne_bgp_aws_cloud_address {
-  description = "IP address in CIDR of remote peer (AWS side)"
-}
-
-variable eqx_ne_bgp_aws_equinix_side_address {
-  description = "IP address in CIDR format of a local device (Equinix side)"
 }

@@ -2,19 +2,20 @@ project_name    = "Equinix-Demo"
 owner           = "Me"
 
 // AWS variables
-aws_access_key              = "" //AWS access key
-aws_secret_key              = "" //AWS secrets key
-aws_region                  = "eu-central-1"
-aws_instance_type           = "t3.micro"
-aws_disk_image              = "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"
-aws_network_cidr            = "172.16.0.0/16"
-aws_subnet1_cidr            = "172.16.0.0/24"
-aws_vm_address              = "172.16.0.100"
-aws_dx_bgp_asn              = "65432"
-aws_dx_bgp_authkey          = "Vz8PmPjOvq"
-aws_dx_bgp_amazon_address   = "169.254.237.17/30"
-aws_dx_bgp_customer_address = "169.254.237.18/30"
-aws_ssh_key_name            = "" //SSH key to access to the AWS VM. It must be created before running this example in AWS
+aws_access_key                  = "" //AWS access key
+aws_secret_key                  = "" //AWS secrets key
+aws_region                      = "eu-central-1"
+aws_instance_type               = "t3.micro"
+aws_disk_image                  = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
+aws_network_cidr                = "172.16.0.0/16"
+aws_subnet1_cidr                = "172.16.0.0/24"
+aws_vm_address                  = "172.16.0.100"
+aws_ssh_key_name                = "" //SSH key to access to the AWS VM. It must be created before running this example in AWS
+aws_dx_bgp_equinix_side_asn     = 65432
+aws_dx_bgp_authkey              = "Vz8PmPjOvq"
+aws_dx_bgp_amazon_address       = "169.254.235.17/30"
+aws_dx_bgp_equinix_side_address = "169.254.235.18/30"
+
 // GCP variables
 gcp_credentials_file_path   = "" //Google Cloud path to credentials json file Ex. "/home/me/gcp/gcp.json"
 gcp_project_id              = "" //Google Cloud existing project ID Ex. "my-project"
@@ -22,7 +23,8 @@ gcp_subnet1_cidr            = "10.240.0.0/24"
 gcp_vm_address              = "10.240.0.100"
 gcp_region                  = "europe-west3"
 gcp_instance_type           = "n1-standard-1"
-gcp_disk_image              = "projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts"
+gcp_disk_image              = "projects/ubuntu-os-cloud/global/images/family/ubuntu-1804-lts"
+gcp_bgp_equinix_side_asn    = 64538
 
 // Equinix variables
 eqx_fabric_notification_users   = [""] //["example@equinix.com"]
@@ -53,12 +55,7 @@ eqx_ne_account_number           = "155225"
 eqx_ne_device_interface_count   = 10
 eqx_ne_device_core_count        = 2
 eqx_ne_device_version           = "16.09.05"
-eqx_ne_ssh_user                 = "my-ssh-user"
-eqx_ne_ssh_pwd                  = "my-ssh-pass"
-// BGP AWS
-eqx_ne_bgp_aws_equinix_side_address = "169.254.237.18/30"
-eqx_ne_bgp_aws_equinix_side_asn     = 65432
-eqx_ne_bgp_aws_cloud_address        = "169.254.237.17/30"
-eqx_ne_bgp_aws_auth_key             = "Vz8PmPjOvq"
-// BGP GCP
-eqx_ne_bgp_gcp_equinix_side_asn     = 64538
+eqx_ne_create_ne_device         = true
+eqx_ne_device_id                = "" //Required if eqx_ne_create_ne_device is false
+eqx_ne_ssh_user                 = "my-user" //leave it empty "" if eqx_ne_create_ne_device false
+eqx_ne_ssh_pwd                  = "my-user" //leave it empty "" if eqx_ne_create_ne_device false

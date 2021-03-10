@@ -37,8 +37,8 @@ variable aws_ssh_key_name {
   description = "SSH key to access to the AWS VM"
 }
 
-variable aws_dx_bgp_asn {
-  description = "The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration"
+variable aws_dx_bgp_equinix_side_asn {
+  description = "The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration. Each BGP interface may use a different value. (Equinix side)"
 }
 
 variable aws_dx_bgp_authkey {
@@ -49,6 +49,6 @@ variable aws_dx_bgp_amazon_address {
   description = "The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers"
 }
 
-variable aws_dx_bgp_customer_address {
-  description = "The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers"
+variable aws_dx_bgp_equinix_side_address {
+  description = "The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers (Equinix side)"
 }

@@ -1,14 +1,8 @@
 /*
  * Terraform networking resources for AWS.
  */
-resource "time_sleep" "wait_accepter_30_seconds" {
-  depends_on = [equinix_ecx_l2_connection_accepter.aws]
-
-  create_duration = "30s"
-}
-
 resource "aws_vpc" "aws-vpc" {
-  depends_on = [time_sleep.wait_accepter_30_seconds]
+  depends_on = [equinix_ecx_l2_connection_accepter.aws]
 
   cidr_block           = var.aws_network_cidr
   enable_dns_support   = true

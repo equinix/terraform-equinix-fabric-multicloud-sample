@@ -6,6 +6,8 @@ data "equinix_network_device_type" "router" {
 }
 
 resource "equinix_network_device" "router" {
+  count             = var.eqx_ne_create_ne_device ? 1 : 0
+
   name              = var.eqx_ne_device_name
   type_code         = data.equinix_network_device_type.router.code
   hostname          = var.eqx_ne_device_hostname
@@ -23,25 +25,31 @@ resource "equinix_network_device" "router" {
   self_managed      = false
 }
 
+locals {
+  router_id = var.eqx_ne_create_ne_device ? equinix_network_device.router[0].id : var.eqx_ne_device_id
+}
+
 resource "equinix_network_ssh_user" "router" {
+  count = var.eqx_ne_create_ne_device ? 1 : 0
+
   username  = var.eqx_ne_ssh_user
   password  = var.eqx_ne_ssh_pwd
-  device_ids = [ equinix_network_device.router.id ]
+  device_ids = [ local.router_id ]
 }
 
 resource "equinix_network_bgp" "aws" {
   connection_id       = equinix_ecx_l2_connection.aws.id
-  local_ip_address    = var.eqx_ne_bgp_aws_equinix_side_address
-  local_asn           = var.eqx_ne_bgp_aws_equinix_side_asn
-  remote_ip_address   = cidrhost(var.eqx_ne_bgp_aws_cloud_address,1)
+  local_ip_address    = var.aws_dx_bgp_equinix_side_address
+  local_asn           = var.aws_dx_bgp_equinix_side_asn
+  remote_ip_address   = cidrhost(var.aws_dx_bgp_amazon_address,1)
   remote_asn          = 64512 // Default AWS ASN for the Direct Connect Gateway if you don't choose one
-  authentication_key  = var.eqx_ne_bgp_aws_auth_key
+  authentication_key  = var.aws_dx_bgp_authkey
 }
 
 resource "equinix_network_bgp" "gcp" {
   connection_id      = equinix_ecx_l2_connection.gcp.id
-  local_ip_address   = local.eqx_ne_bgp_gcp_equinix_side_address
-  local_asn          = var.eqx_ne_bgp_gcp_equinix_side_asn
-  remote_ip_address  = cidrhost(local.eqx_ne_bgp_gcp_cloud_address,1)
+  local_ip_address   = local.gcp_bgp_equinix_side_address
+  local_asn          = var.gcp_bgp_equinix_side_asn
+  remote_ip_address  = cidrhost(local.gcp_bgp_cloud_address,1)
   remote_asn         = 16550 // The Cloud Router used by PARTNER type interconnect attachments must be assigned a local ASN of '16550'
 }

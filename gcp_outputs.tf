@@ -11,10 +11,10 @@ output "gcp_instance_internal_ip" {
 }
 
 output "gcp_cloud_router_ip_address" {
- value = google_compute_interconnect_attachment.interconn-vlan.cloud_router_ip_address
+ value = local.gcp_bgp_cloud_address
 }
 
 output "gcp_customer_router_ip_address" {
- value = google_compute_interconnect_attachment.interconn-vlan.customer_router_ip_address
+ value = local.gcp_bgp_equinix_side_address
 }
 
