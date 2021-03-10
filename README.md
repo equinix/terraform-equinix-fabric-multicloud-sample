@@ -60,5 +60,4 @@ Required steps to setup your environment for the lab:
 
 ## TODO - Pending tasks
 
-- [ ] Add variables validation
 - [ ] TBD include other CSP options
