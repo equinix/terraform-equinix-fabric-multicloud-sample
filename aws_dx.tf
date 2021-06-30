@@ -6,6 +6,7 @@ resource "aws_vpn_gateway" "aws-dx" {
     Terraform = "true"
     Project   = lower(var.project_name)
     Owner     = lower(var.owner)
+    Name      = format("%s-dx-vpg", lower(var.project_name))
   }
 }
 

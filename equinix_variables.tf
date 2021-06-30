@@ -20,7 +20,7 @@ variable eqx_fabric_aws_primary_connection_name {
 }
 
 variable eqx_fabric_aws_speed {
-  description = "speed for the Equinic Fabric connection, must be allowed by the platform and seller"
+  description = "speed for the Equinix Fabric connection, must be allowed by the platform and seller"
 }
 
 variable eqx_fabric_aws_speed_unit {
